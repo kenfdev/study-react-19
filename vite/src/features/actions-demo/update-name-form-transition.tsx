@@ -18,7 +18,7 @@ export function UpdateNameFormTransition() {
 
   return (
     <div>
-      <h2>Update Name Form</h2>
+      <h2>Update Name Form (Transition)</h2>
       <input value={name} onChange={(event) => setName(event.target.value)} />
       <button onClick={handleSubmit} disabled={isPending}>
         Update

@@ -9,19 +9,30 @@ import { OptimisticDemoPage } from './features/use-optimistic-demo';
 import { ContextDemoPage } from './features/context-demo';
 import { RefDemoPage } from './features/ref-demo';
 import { DocumentMetaDemoPage } from './features/document-meta-demo';
+import { Header } from './components/Header';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/actions-demo" element={<ActionsDemoPage />} />
-        <Route path="/form-status-demo" element={<FormStatusDemoPage />} />
-        <Route path="/optimistic-demo" element={<OptimisticDemoPage />} />
-        <Route path="/context-demo" element={<ContextDemoPage />} />
-        <Route path="/ref-demo" element={<RefDemoPage />} />
-        <Route path="/document-meta-demo" element={<DocumentMetaDemoPage />} />
-      </Routes>
+      <div
+        style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}
+      >
+        <Header />
+        <div style={{ flex: 1 }}>
+          <Routes>
+            <Route path="/" element={<App />} />
+            <Route path="/actions-demo" element={<ActionsDemoPage />} />
+            <Route path="/form-status-demo" element={<FormStatusDemoPage />} />
+            <Route path="/optimistic-demo" element={<OptimisticDemoPage />} />
+            <Route path="/context-demo" element={<ContextDemoPage />} />
+            <Route path="/ref-demo" element={<RefDemoPage />} />
+            <Route
+              path="/document-meta-demo"
+              element={<DocumentMetaDemoPage />}
+            />
+          </Routes>
+        </div>
+      </div>
     </BrowserRouter>
   </StrictMode>
 );

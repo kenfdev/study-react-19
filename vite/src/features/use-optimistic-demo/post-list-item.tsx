@@ -42,7 +42,7 @@ export function PostListItem({ post }: { post: Post }) {
           style={{
             background: 'none',
             border: 'none',
-            cursor: isPending ? 'not-allowed' : 'pointer',
+            color: 'inherit',
             fontSize: '1.5rem',
           }}
         >

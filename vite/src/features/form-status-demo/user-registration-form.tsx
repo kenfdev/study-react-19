@@ -1,7 +1,9 @@
-import { useActionState } from 'react';
+import { useActionState, Suspense, useMemo } from 'react';
 import { SubmitButton } from './submit-button';
 import { FormFeedback } from './form-feedback';
 import { registerUser } from './api/register-user';
+import { UserTypeSelect } from './user-type-select';
+import { getUserTypes } from './api/get-user-types';
 
 export function UserRegistrationForm() {
   const [registrationResult, submitAction] = useActionState<
@@ -10,12 +12,14 @@ export function UserRegistrationForm() {
   >(async (_previousState, formData) => {
     const result = await registerUser(
       formData.get('name') as string,
-      formData.get('email') as string
+      formData.get('email') as string,
+      formData.get('userType') as string
     );
-    console.log('register user result', result);
     return result;
   }, null);
-  console.log('registrationResult', registrationResult);
+
+  // Memoize the promise so it's only created once
+  const userTypesPromise = useMemo(() => getUserTypes(), []);
 
   return (
     <div className="registration-container">
@@ -30,6 +34,13 @@ export function UserRegistrationForm() {
         <div className="form-group">
           <label htmlFor="email">Email Address</label>
           <input type="email" id="email" name="email" required />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="userType">User Type</label>
+          <Suspense fallback={<div>Loading...</div>}>
+            <UserTypeSelect getUserTypes={userTypesPromise} />
+          </Suspense>
         </div>
 
         {/* Child component that uses useFormStatus for the submit button */}

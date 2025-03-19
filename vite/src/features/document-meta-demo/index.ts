@@ -1,0 +1,1 @@
+export { DocumentMetaDemoPage } from './page';

@@ -7,6 +7,7 @@ import { ActionsDemoPage } from './features/actions-demo';
 import { FormStatusDemoPage } from './features/form-status-demo';
 import { OptimisticDemoPage } from './features/use-optimistic-demo';
 import { ContextDemoPage } from './features/context-demo';
+import { RefDemoPage } from './features/ref-demo';
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
@@ -16,6 +17,7 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/form-status-demo" element={<FormStatusDemoPage />} />
         <Route path="/optimistic-demo" element={<OptimisticDemoPage />} />
         <Route path="/context-demo" element={<ContextDemoPage />} />
+        <Route path="/ref-demo" element={<RefDemoPage />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>

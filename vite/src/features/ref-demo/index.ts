@@ -1,0 +1,1 @@
+export { RefDemoPage } from './page';

@@ -6,6 +6,7 @@ import { BrowserRouter, Route, Routes } from 'react-router';
 import { ActionsDemoPage } from './features/actions-demo';
 import { FormStatusDemoPage } from './features/form-status-demo';
 import { OptimisticDemoPage } from './features/use-optimistic-demo';
+import { ContextDemoPage } from './features/context-demo';
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
@@ -14,6 +15,7 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/actions-demo" element={<ActionsDemoPage />} />
         <Route path="/form-status-demo" element={<FormStatusDemoPage />} />
         <Route path="/optimistic-demo" element={<OptimisticDemoPage />} />
+        <Route path="/context-demo" element={<ContextDemoPage />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>

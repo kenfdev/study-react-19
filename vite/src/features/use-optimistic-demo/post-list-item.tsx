@@ -3,20 +3,26 @@ import { toggleLike } from './api/toggle-like';
 import { Post } from './model';
 export function PostListItem({ post }: { post: Post }) {
   const [updatedPost, submitAction, isPending] = useActionState<Post, FormData>(
-    async (_previousPost, formData) => {
+    async (previousPost, formData) => {
       const postId = Number(formData.get('postId'));
       const liked = formData.get('liked') === 'true';
-      console.log('liked', liked);
-      const optimistic = { ...optimisticPost, liked: !optimisticPost.liked };
-      console.log('optimistic', optimistic);
+      const optimistic: Post = {
+        ...previousPost,
+        liked: !previousPost.liked,
+      };
       updateOptimisticPost(optimistic);
-      const updatedPost = await toggleLike(postId, liked);
-      return updatedPost;
+
+      try {
+        const updatedPost = await toggleLike(postId, liked);
+        return updatedPost;
+      } catch (error) {
+        console.error('Error toggling like', error);
+        return previousPost;
+      }
     },
     post
   );
   const [optimisticPost, updateOptimisticPost] = useOptimistic(updatedPost);
-  console.log('optimisticPost', optimisticPost);
   return (
     <div
       key={optimisticPost.id}

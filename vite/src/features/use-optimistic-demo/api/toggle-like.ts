@@ -5,14 +5,18 @@ export async function toggleLike(
   postId: number,
   liked: boolean
 ): Promise<Post> {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     setTimeout(() => {
       const updatedPost = posts.find((post) => post.id === postId);
       if (!updatedPost) {
-        throw new Error('Post not found');
+        reject(new Error('Error toggling like'));
+        return;
       }
-      updatedPost.liked = !liked;
-      resolve(updatedPost);
+      if (updatedPost.id === 2) {
+        reject(new Error('Error toggling like'));
+        return;
+      }
+      resolve({ ...updatedPost, liked: !liked });
     }, 1000);
   });
 }

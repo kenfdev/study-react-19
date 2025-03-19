@@ -1,10 +1,13 @@
 import { useState, useRef } from 'react';
 import { CustomInput } from './custom-input';
 
+const handleKeyPress = () => {
+  console.log('handleKeyPress');
+};
+
 export function RefDemoPage() {
   const inputRef = useRef<HTMLInputElement>(null);
   const [message, setMessage] = useState<string>('');
-  const [keyCount, setKeyCount] = useState<number>(0);
   const [isExampleMounted, setIsExampleMounted] = useState<boolean>(false);
 
   // Example of ref with cleanup function
@@ -13,10 +16,6 @@ export function RefDemoPage() {
   // Function to apply the ref callback
   const setKeyListener = (element: HTMLInputElement | null) => {
     if (!element) return;
-
-    const handleKeyPress = () => {
-      setKeyCount((prev) => prev + 1);
-    };
 
     // Add event listener
     element.addEventListener('keyup', handleKeyPress);
@@ -97,20 +96,6 @@ export function RefDemoPage() {
               This input uses a ref with a cleanup function for the keyup event
               listener.
             </p>
-
-            <div
-              style={{
-                background: '#555',
-                padding: '0.7rem',
-                borderRadius: '6px',
-                marginBottom: '1rem',
-                fontSize: '1.3rem',
-                textAlign: 'center',
-                fontWeight: 'bold',
-              }}
-            >
-              Keys pressed: <span style={{ color: '#00e5ff' }}>{keyCount}</span>
-            </div>
 
             <CustomInput
               label="Try typing here"

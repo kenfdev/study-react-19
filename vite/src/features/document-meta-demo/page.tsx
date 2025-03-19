@@ -1,3 +1,5 @@
+// import { Child } from "./child";
+
 export function DocumentMetaDemoPage() {
   const post = {
     title: 'My Post',
@@ -10,6 +12,7 @@ export function DocumentMetaDemoPage() {
       <meta name="author" content="Josh" />
       <link rel="author" href="https://twitter.com/joshcstory/" />
       <meta name="keywords" content={post.keywords} />
+      {/* <Child /> */}
     </div>
   );
 }
